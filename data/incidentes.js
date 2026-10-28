@@ -129,9 +129,9 @@ window.INCIDENTES = [
   {
     id: "ceuni-2026", fecha: "2026-10", anio: 2026, entidad: "CEUNI · votación electrónica UNI", sector: "Estado",
     titulo: "Hoy: un docente de la UNI entra a votar y el sistema dice que ya votó",
-    resumen: "28-oct-2026, segunda vuelta de rector y vicerrectores de la UNI (cierre 16:00). Un docente de la FAUA reporta que al abrir el enlace de votación recibido en su correo institucional el sistema le mostró “voto emitido” sin haber votado, y lo denunció al Comité Electoral. Un solo reporte, sin respuesta pública al cierre de esta página. Si el enlace del correo basta para votar, el correo es la identidad.",
+    resumen: "28-oct-2026, segunda vuelta de rector y vicerrectores de la UNI (cierre 16:00). Un docente de la FAUA reporta que al abrir el enlace de votación recibido en su correo institucional el sistema le mostró “voto emitido” sin haber votado, y lo denunció al Comité Electoral. A las 14:38 otro elector no pudo iniciar sesión en su cuenta UNI porque su configuración “no cumple la política de verificación en dos pasos”. Dos reportes, sin respuesta pública al cierre de esta página. Si el enlace del correo basta para votar, el correo es la identidad; y si la política de acceso cambia el día de la votación, también se vota por omisión.",
     estado: "sinverificar", estado_txt: "Denuncia de un elector · sin verificar",
-    registros: null, registros_tipo: "potencial", escala_txt: "1 reporte · padrón docente UNI",
+    registros: null, registros_tipo: "potencial", escala_txt: "2 reportes · padrón UNI",
     datos: ["correo","credenciales"],
     vector: "Autenticación por enlace de correo",
     fuentes: [["Captura compartida por un docente UNI, 28-oct-2026 14:55", "https://unimauro.github.io/datos-expuestos-peru/"]]
