@@ -32,7 +32,7 @@ document.getElementById('datos').innerHTML = datos.map(d=>`<div class="card"><di
 // Barras horizontales
 (function(){
   const rows = I.filter(i=>i.registros).sort((a,b)=>b.registros-a.registros);
-  const W=900, lh=38, padL=250, padR=90, H=rows.length*lh+30;
+  const W=900, lh=38, padL=250, padR=170, H=rows.length*lh+30;
   const max = Math.max(...rows.map(r=>r.registros));
   const sx = v => padL + (W-padL-padR)*v/max;
   let s = `<defs>`;

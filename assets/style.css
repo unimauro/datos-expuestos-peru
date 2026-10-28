@@ -35,7 +35,7 @@ h2{font-size:clamp(21px,3vw,28px);margin:0 0 6px;line-height:1.2}
 h2 small{display:block;font-size:15px;color:var(--muted);font-weight:400;margin-top:4px}
 .grid{display:grid;gap:14px}
 .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .g4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
 .stat{display:flex;flex-direction:column;gap:2px}
