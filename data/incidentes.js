@@ -128,13 +128,13 @@ window.INCIDENTES = [
   },
   {
     id: "ceuni-2026", fecha: "2026-10", anio: 2026, entidad: "CEUNI · votación electrónica UNI", sector: "Estado",
-    titulo: "Hoy: un docente de la UNI entra a votar y el sistema dice que ya votó",
-    resumen: "28-oct-2026, segunda vuelta de rector y vicerrectores de la UNI (cierre 16:00). Un docente de la FAUA reporta que al abrir el enlace de votación recibido en su correo institucional el sistema le mostró “voto emitido” sin haber votado, y lo denunció al Comité Electoral. A las 14:38 otro elector no pudo iniciar sesión en su cuenta UNI porque su configuración “no cumple la política de verificación en dos pasos”. Dos reportes, sin respuesta pública al cierre de esta página. Si el enlace del correo basta para votar, el correo es la identidad; y si la política de acceso cambia el día de la votación, también se vota por omisión.",
-    estado: "sinverificar", estado_txt: "Denuncia de un elector · sin verificar",
-    registros: null, registros_tipo: "potencial", escala_txt: "2 reportes · padrón UNI",
+    titulo: "Hoy: tres docentes entran a votar por rector y el sistema dice que ya votaron",
+    resumen: "28-oct-2026, segunda vuelta de rector y vicerrectores de la UNI (cierre 16:00). Entre las 15:13 y las 15:32, tres docentes de tres facultades (Arquitectura, Ingeniería Mecánica, Ingeniería Industrial y Sistemas) reportan que al abrir el enlace de votación recibido en su correo institucional el sistema mostraba “voto emitido” sin que hubieran votado; al menos uno lo denunció al Comité Electoral. A las 14:38 otro elector no pudo iniciar sesión en su cuenta UNI por la política de verificación en dos pasos. Sin respuesta pública al cierre de esta página. Si el enlace del correo basta para votar, el correo es la identidad.",
+    estado: "sinverificar", estado_txt: "Denuncias de electores · sin verificar",
+    registros: null, registros_tipo: "potencial", escala_txt: "4 reportes · padrón UNI",
     datos: ["correo","credenciales"],
     vector: "Autenticación por enlace de correo",
-    fuentes: [["Captura compartida por un docente UNI, 28-oct-2026 14:55", "https://unimauro.github.io/datos-expuestos-peru/"]]
+    fuentes: [["Capturas compartidas por docentes UNI, 28-oct-2026 15:13–15:32", "https://unimauro.github.io/datos-expuestos-peru/"]]
   },
   {
     id: "bn-2026", fecha: "2026-10", anio: 2026, entidad: "Banco de la Nación", sector: "Banca",
