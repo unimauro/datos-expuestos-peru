@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Datos expuestos Perú</title>
+<meta name="description" content="Las peores fallas de seguridad con datos de ciudadanos en el Perú, 2022–2026: qué se filtró, cuánto, quién lo reconoció y qué datos tuyos ya circulan.">
+<meta property="og:title" content="Datos expuestos Perú · 2022–2026">
+<meta property="og:description" content="Dashboard de las brechas más graves con datos de peruanos: Interbank, RENIEC, Movistar, Inkafarma, DIRIN y las afirmaciones de octubre 2026.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23862228'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23F5A623' font-family='Arial' font-weight='700'%3EPE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./">DATOS EXPUESTOS · PERÚ</a>
+  <nav><a class="active" href="./">Dashboard</a><a href="peor-escenario.html">El peor escenario con IA</a><a href="#fuentes">Fuentes</a></nav>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <h1>Tus datos ya están afuera. <span>Esto es lo que se sabe.</span></h1>
+  <p class="lead">Las fallas más graves de seguridad con datos de ciudadanos en el Perú entre 2022 y octubre de 2026: qué se expuso, cuánto, quién lo reconoció y qué datos tuyos circulan hoy.</p>
+  <div class="meta">Corte: 28-oct-2026 · Se distingue lo <b>confirmado</b> de lo <b>afirmado en foros</b>. Cada caso enlaza a su fuente. · Charla «Ver ya no es creer», Ecosistema Generativo · CEE-UNI.</div>
+</div>
+
+<section>
+  <div class="grid g3" id="kpis"></div>
+</section>
+
+<section>
+  <h2>Qué datos tuyos ya circulan <small>Si un tipo de dato aparece en un caso confirmado o reconocido, asume que es público. Ninguno se puede “cambiar de contraseña”.</small></h2>
+  <div class="grid g4" id="datos"></div>
+</section>
+
+<section>
+  <h2>Escala de cada caso <small>Registros expuestos, en millones. Barra sólida: cifra reconocida. Barra rayada: cifra afirmada por el atacante o alcance potencial.</small></h2>
+  <div class="card">
+    <div class="legend">
+      <span><span class="sw" style="background:var(--st-confirmado)"></span>Confirmado o reconocido</span>
+      <span><span class="sw" style="background:var(--st-alerta)"></span>Alerta oficial / en investigación</span>
+      <span><span class="sw" style="background:var(--st-sinverificar)"></span>Afirmado, sin verificar</span>
+      <span><span class="sw" style="background:var(--st-negado)"></span>Negado</span>
+    </div>
+    <svg class="chart" id="bars" role="img" aria-label="Registros expuestos por caso"></svg>
+    <p class="note">Las cifras no se suman: una misma persona aparece en varias bases. Casos sin cifra (PIDE 2022, DIRIN 2025, afirmaciones de oct-2026) no se grafican.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Cómo se aceleró <small>Casos por año según su estado. 2026 solo cubre hasta el 28 de octubre.</small></h2>
+  <div class="card"><svg class="chart" id="years" role="img" aria-label="Casos por año y estado"></svg></div>
+</section>
+
+<section>
+  <h2>Los casos <small>Del más reciente al más antiguo. Filtra por estado o sector.</small></h2>
+  <div class="filters" id="filtros"></div>
+  <div class="grid" id="lista"></div>
+</section>
+
+<section>
+  <h2>Quién reconoció qué <small>Matriz de tipos de dato por caso. ● confirmado o reconocido, ▲ alerta oficial, ◆ afirmado sin verificar, ○ negado.</small></h2>
+  <div class="card matrix"><table id="matriz"></table></div>
+</section>
+
+<section>
+  <h2>El Estado sí reacciona, pero después <small>Contexto regulatorio: la Autoridad Nacional de Protección de Datos Personales (ANPD) y el reglamento vigente desde marzo de 2025.</small></h2>
+  <div class="grid g4" id="contexto"></div>
+</section>
+
+<section>
+  <div class="callout">Tres de los cuatro casos más grandes salieron por accesos legítimos mal controlados, no por “hackers”. El DNI, el nombre, la dirección y la fecha de nacimiento de la mayoría de peruanos ya son públicos. Mientras sigan sirviendo para autenticarte, cada filtración vale para siempre.</div>
+  <p style="margin-top:14px"><a class="btn" href="peor-escenario.html">Ver el peor escenario con IA →</a> <a class="btn ghost" href="peor-escenario.html#reset">La propuesta: reset de llaves, no de personas</a></p>
+</section>
+
+<section id="fuentes">
+  <h2>Fuentes y método</h2>
+  <p class="note">Cada caso muestra sus fuentes periodísticas u oficiales. <b>Confirmado o reconocido</b>: la entidad admitió la exposición. <b>Alerta oficial / en investigación</b>: hubo alerta del CNSD o la empresa admitió investigar sin desmentir. <b>Afirmado, sin verificar</b>: solo existe la afirmación del atacante en foros. <b>Negado</b>: la entidad niega la brecha. Las cifras de registros son las publicadas por la prensa o el atacante; no se auditaron. Datos en <a href="data/incidentes.js">data/incidentes.js</a>; correcciones a <a href="mailto:carlos@cardenas.pe">carlos@cardenas.pe</a>.</p>
+</section>
+</div>
+
+<footer><div class="wrap">Carlos Cárdenas Fernández · Ingeniero de Sistemas (UNI) · MBA · <a href="https://github.com/unimauro">github.com/unimauro</a> · Material de la charla «Ver ya no es creer», conferencia Ecosistema Generativo, CEE-UNI, 28-oct-2026. Sin fines comerciales; las marcas citadas pertenecen a sus titulares.</div></footer>
+<div class="tip" id="tip"></div>
+<script src="data/incidentes.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
