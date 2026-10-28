@@ -113,6 +113,20 @@ window.INCIDENTES = [
     ]
   },
   {
+    id: "telegram-2025", fecha: "2025-11", anio: 2025, entidad: "Bots de Telegram (mercado de datos)", sector: "Mercado ilegal",
+    titulo: "Bots de Telegram venden tu DNI, huella y hogar; se paga por Yape o Plin",
+    resumen: "Derechos Digitales analizó 27 grupos y canales de Telegram (oct-2024 a nov-2025). En el Perú, el comando /dni entrega sexo, nacimiento, estado civil y fechas del documento; los bots también dan huellas, foto, firma e imágenes del DNI, y /hogar revela dirección, clasificación socioeconómica e integrantes del hogar. La consulta parcial es gratis; la completa se paga por Yape o Plin.",
+    estado: "confirmado", estado_txt: "Documentado por investigación independiente",
+    registros: null, registros_tipo: "potencial", escala_txt: "Cualquier peruano, a pedido",
+    datos: ["dni","nombre","direccion","nacimiento","biometria","familia"],
+    vector: "Reventa de bases filtradas + accesos abusados",
+    fuentes: [
+      ["Derechos Digitales, Identidades en venta (mar-2026)", "https://www.derechosdigitales.org/wp-content/uploads/2026/03/Identidades-en-venta_ES.pdf"],
+      ["Mobile Time, 27-mar-2026", "https://mobiletime.la/noticias/27/03/2026/venta-de-datos-personales-telegram/?swcfpc=1"],
+      ["RPP: bot Himiko Data", "https://rpp.pe/tecnologia/mas-tecnologia/telegram-bot-himiko-data-expone-datos-personales-de-peruanos-noticia-1474670"]
+    ]
+  },
+  {
     id: "reniec-2026", fecha: "2026-10", anio: 2026, entidad: "RENIEC", sector: "Estado",
     titulo: "Octubre 2026: afirman tener datos de RENIEC",
     resumen: "El 18-oct-2026 un actor en foros afirmó tener registros de RENIEC. No hay confirmación independiente ni pronunciamiento verificable al cierre de esta página.",
@@ -168,6 +182,12 @@ window.ESTADOS = {
 };
 
 // Contexto regulatorio (ANPD = Autoridad Nacional de Protección de Datos Personales)
+window.YAPE = [
+  { h: "El mercado de datos cobra por Yape y Plin", p: "Los bots de Telegram que venden DNI, huella, foto y dirección de cualquier peruano aceptan pago por Yape o Plin. Que la transferencia sea trazable no significa que alguien la fiscalice.", f: "Derechos Digitales, mar-2026", u: "https://www.derechosdigitales.org/wp-content/uploads/2026/03/Identidades-en-venta_ES.pdf" },
+  { h: "La estafa termina en una transferencia", p: "“Bono Yape 2025”, falsas devoluciones, llamadas del “banco”, apps clonadas: la app funciona bien, al que manipulan es al usuario. Con tu nombre, DNI y número reales, el guion es a medida.", f: "El Tiempo; Kaspersky 2024", u: "https://eltiempo.pe/bonos-y-subsidios/falso-bono-yape-2025-alertan-sobre-nueva-modalidad-de-estafa-digital/" },
+  { h: "Más de 20 millones de billeteras", p: "Yape y Plin concentran los pagos de persona a persona del país. Robo de celular + datos públicos = cuenta vaciada en minutos. Las respuestas (código de seguridad, bloqueo de emergencia en agentes) llegaron después del daño.", f: "Mercado Negro, jun-2026; Ground News", u: "https://www.mercadonegro.pe/actualidad/billeteras-digitales-en-peru-analisis-del-aumento-de-usuarios-y-volumen-de-transacciones/" }
+];
+
 window.CONTEXTO = [
   { n: "S/ 11 M+", t: "en multas de la ANPD en 2025", f: "MINJUS / ANPD, balance 2025", u: "https://www.gob.pe/institucion/minjus/noticias/1331848-anpd-impuso-multas-por-mas-de-s-11-millones-y-reforzo-la-proteccion-de-datos-personales-durante-el-2025" },
   { n: "760", t: "fiscalizaciones en 2025 (+67 % vs 2024)", f: "LexLatin", u: "https://lexlatin.com/reportajes/proteccion-datos-personales-peru-empresas-oficial-cumplimiento-reforma" },

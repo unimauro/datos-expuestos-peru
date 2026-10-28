@@ -11,11 +11,11 @@ function hideTip(){ tip.style.display='none'; }
 
 // KPIs
 const kp = [
-  { n: '13', t: 'casos graves registrados, 2022 → oct-2026', f: '5 confirmados o reconocidos · 3 con alerta oficial · 3 sin verificar · 2 negados' },
+  { n: '14', t: 'casos graves registrados, 2022 → oct-2026', f: '6 confirmados o reconocidos · 3 con alerta oficial · 3 sin verificar · 2 negados' },
   { n: '15 M', t: 'ciudadanos consultados en masa desde RENIEC (abr-2025)', f: 'Reconocido por la jefa de RENIEC. Acceso vía convenio del Mininter.' },
   { n: '21 M', t: 'registros de Movistar ofrecidos en venta (jun-2025)', f: 'DNI, nombre, dirección, plan. Telefónica investiga.' },
-  { n: '4 de 13', t: 'casos salieron por un acceso legítimo mal controlado', f: 'PIDE 2022, RENIEC-Mininter 2025, DIRIN 2025, padrón 2025.' },
-  { n: '7', t: 'casos en los últimos 16 meses', f: 'Jun-2025 → oct-2026. Cuatro son afirmaciones de la última semana.' },
+  { n: '4 de 14', t: 'casos salieron por un acceso legítimo mal controlado', f: 'PIDE 2022, RENIEC-Mininter 2025, DIRIN 2025, padrón 2025.' },
+  { n: '8', t: 'casos en los últimos 16 meses', f: 'Jun-2025 → oct-2026. Cuatro son afirmaciones de la última semana.' },
   { n: '0', t: 'veces que un DNI, una dirección o una huella se pudieron “resetear”', f: 'Por eso cada filtración vale para siempre. Ver el peor escenario.' }
 ];
 document.getElementById('kpis').innerHTML = kp.map(k=>`<div class="card stat"><div class="n">${k.n}</div><div class="t">${k.t}</div><div class="f">${k.f}</div></div>`).join('');
@@ -109,6 +109,9 @@ renderFiltros(); renderLista();
   for (const i of I) h+=`<tr><td><b>${i.entidad}</b><br><span class="note">${mes(i.fecha)}</span></td><td><span class="tag ${i.estado}"><i>${E[i.estado].icon}</i>${E[i.estado].label.split(' ')[0]}</span></td>`+cols.map(c=> i.datos.includes(c)?`<td class="y" style="color:${col(i.estado)}">${E[i.estado].icon}</td>`:`<td class="n">·</td>`).join('')+'</tr>';
   document.getElementById('matriz').innerHTML=h+'</tbody>';
 })();
+
+// Yape / Plin
+document.getElementById('yape').innerHTML = window.YAPE.map(c=>`<div class="card"><div style="font-weight:700;font-size:18px;line-height:1.25;margin-bottom:6px">${c.h}</div><p style="margin:0;color:var(--ink-2);font-size:15px">${c.p}</p><div class="note" style="margin-top:8px"><a href="${c.u}" target="_blank" rel="noopener">${c.f}</a></div></div>`).join('');
 
 // Contexto
 document.getElementById('contexto').innerHTML = window.CONTEXTO.map(c=>`<div class="card stat"><div class="n" style="font-size:clamp(26px,3.6vw,36px)">${c.n}</div><div class="t">${c.t}</div><div class="f"><a href="${c.u}" target="_blank" rel="noopener">${c.f}</a></div></div>`).join('');
