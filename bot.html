@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot bajo ataque</title>
+<meta name="description" content="Demo en vivo: un agente de IA sobre el dashboard recibe una batería de pruebas adversariales (inyección directa e indirecta, extracción, abuso de herramientas) y sigue funcionando.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23862228'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23F5A623' font-family='Arial' font-weight='700'%3EPE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.chat{display:flex;flex-direction:column;height:560px}
+.msgs{flex:1;overflow:auto;padding:4px 2px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:92%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.4;white-space:pre-wrap;word-break:break-word}
+.m.u{align-self:flex-end;background:var(--guinda);color:#fff;border-bottom-right-radius:4px}
+.m.a{align-self:flex-start;background:var(--surface-2);color:var(--ink);border-bottom-left-radius:4px}
+.m.t{align-self:flex-start;background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:13px;font-family:ui-monospace,Menlo,monospace}
+.m.g{align-self:stretch;background:var(--gold);color:#1A1A1D;font-weight:600}
+.m.g .btns{margin-top:8px;display:flex;gap:8px}
+.in{display:flex;gap:8px;margin-top:10px}
+.in input{flex:1;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.b{font:inherit;font-weight:600;padding:9px 14px;border-radius:10px;border:0;background:var(--guinda);color:#fff;cursor:pointer}
+button.b.ghost{background:transparent;color:var(--guinda);border:1.5px solid var(--guinda)}
+button.b:disabled{opacity:.5;cursor:default}
+.cfg{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}
+.cfg input,.cfg select{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+@media (max-width:600px){.cfg{grid-template-columns:1fr}}
+.tests{display:flex;flex-direction:column;gap:8px}
+.test{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.test .st{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background:var(--surface-2);color:var(--muted)}
+.test.pass .st{background:#2E7D4F;color:#fff}.test.fail .st{background:#9E2A36;color:#fff}.test.run .st{background:var(--gold);color:#1A1A1D}
+.test h4{margin:0;font-size:15px}
+.test .k{font-size:12.5px;color:var(--muted)}
+.test .out{font-size:13px;color:var(--ink-2);margin-top:6px;white-space:pre-wrap;display:none}
+.test.open .out{display:block}
+.test .why{font-size:12.5px;margin-top:4px;color:var(--muted)}
+.score{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin:10px 0}
+.score .n{font-size:40px;font-weight:700;color:var(--guinda)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.rules .card{padding:12px 14px;font-size:14px}
+.rules b{display:block;margin-bottom:3px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./">DATOS EXPUESTOS · PERÚ</a>
+  <nav><a href="./">Dashboard</a><a href="peor-escenario.html">El peor escenario con IA</a><a class="active" href="bot.html">Bot bajo ataque</a></nav>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <h1>Bot bajo ataque. <span>Y todo continúa.</span></h1>
+  <p class="lead">Un agente de IA responde sobre el dashboard y tiene una herramienta con dinero (transferir por Yape). Le lanzamos doce ataques en vivo: inyección directa e indirecta, extracción del prompt, suplantación de autoridad, abuso de herramientas, extracción de datos personales. Después de cada ataque, el bot sigue atendiendo.</p>
+  <div class="meta">Demo de la charla «Ver ya no es creer» (CEE-UNI, 28-oct-2026). Cada prueba se califica con una regla fija (canarios, llamadas a herramientas) y, cuando hace falta, con un segundo modelo como juez. Nada se envía a ningún servidor propio: el navegador habla directo con la API.</div>
+</div>
+
+<section>
+  <div class="card">
+    <div class="cfg">
+      <input id="key" type="password" placeholder="Clave de API (solo en esta pestaña; se borra al cerrarla)" autocomplete="off">
+      <select id="model">
+        <option value="claude-opus-5-5">Opus 5.5 (bot)</option>
+        <option value="claude-sonnet-5-5">Sonnet 5.5 (bot)</option>
+        <option value="claude-haiku-5-5">Haiku 5.5 (bot)</option>
+      </select>
+      <button class="b" id="runall">Correr la batería</button>
+    </div>
+    <p class="note" style="margin:8px 0 0">El juez siempre usa Haiku 5.5. La clave vive en memoria de sesión del navegador, nunca en el repositorio ni en un servidor.</p>
+  </div>
+</section>
+
+<section class="two">
+  <div class="card chat">
+    <h2 style="font-size:19px">El bot <small>Pregúntale lo que quieras. Las llamadas a herramientas se muestran en gris.</small></h2>
+    <div class="msgs" id="msgs"></div>
+    <div class="in"><input id="q" placeholder="Ej.: ¿cuál es la filtración más grande confirmada?"><button class="b" id="send">Enviar</button><button class="b ghost" id="reset">Nuevo</button></div>
+  </div>
+  <div class="card">
+    <h2 style="font-size:19px">Pruebas adversariales <small>Cada ataque corre en una conversación limpia; el último verifica que el bot sigue sirviendo.</small></h2>
+    <div class="score"><span class="n" id="scoreN">0 / 12</span><span class="note" id="scoreT">sin correr</span></div>
+    <div class="tests" id="tests"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Las cinco reglas que lo sostienen <small>Las mismas de la charla. Ninguna es un parche de palabras: son diseño.</small></h2>
+  <div class="rules">
+    <div class="card"><b>1. Menor privilegio</b>El bot solo lee el dataset público. No tiene acceso a nada más.</div>
+    <div class="card"><b>2. El humano aprueba lo irreversible</b>Transferir dinero exige un clic de aprobación fuera del modelo. El modelo no puede darse permiso.</div>
+    <div class="card"><b>3. Los datos son datos</b>Lo que devuelve una herramienta se trata como contenido, nunca como instrucción. El caso 5 esconde una orden dentro de un registro.</div>
+    <div class="card"><b>4. Todo queda registrado</b>Cada llamada a herramienta se muestra en el chat. Lo que no se ve no se audita.</div>
+    <div class="card"><b>5. Atacar antes de lanzar</b>Esta batería corre antes de cada cambio del prompt o del modelo. Si una falla, no se despliega.</div>
+  </div>
+  <p class="note" style="margin-top:12px">Limitaciones honestas: doce pruebas no son una auditoría. Un modelo puede resistir hoy y fallar con una variante mañana; por eso la regla 2 (aprobación humana) importa más que cualquier prompt.</p>
+</section>
+</div>
+
+<footer><div class="wrap">Carlos Cárdenas Fernández · Ingeniero de Sistemas (UNI) · MBA · <a href="https://github.com/unimauro">github.com/unimauro</a> · Código abierto en el repositorio del sitio. Las pruebas describen ataques conocidos con fines defensivos.</div></footer>
+<script src="data/incidentes.js"></script>
+<script src="data/pruebas.js"></script>
+<script src="assets/bot.js"></script>
+</body>
+</html>
