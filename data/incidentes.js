@@ -127,6 +127,66 @@ window.INCIDENTES = [
     ]
   },
   {
+    id: "ceuni-2026", fecha: "2026-10", anio: 2026, entidad: "CEUNI · votación electrónica UNI", sector: "Estado",
+    titulo: "Hoy: un docente de la UNI entra a votar y el sistema dice que ya votó",
+    resumen: "28-oct-2026, segunda vuelta de rector y vicerrectores de la UNI (cierre 16:00). Un docente de la FAUA reporta que al abrir el enlace de votación recibido en su correo institucional el sistema le mostró “voto emitido” sin haber votado, y lo denunció al Comité Electoral. Un solo reporte, sin respuesta pública al cierre de esta página. Si el enlace del correo basta para votar, el correo es la identidad.",
+    estado: "sinverificar", estado_txt: "Denuncia de un elector · sin verificar",
+    registros: null, registros_tipo: "potencial", escala_txt: "1 reporte · padrón docente UNI",
+    datos: ["correo","credenciales"],
+    vector: "Autenticación por enlace de correo",
+    fuentes: [["Captura compartida por un docente UNI, 28-oct-2026 14:55", "https://unimauro.github.io/datos-expuestos-peru/"]]
+  },
+  {
+    id: "bn-2026", fecha: "2026-10", anio: 2026, entidad: "Banco de la Nación", sector: "Banca",
+    titulo: "Octubre 2026: base del Banco de la Nación ofrecida por US$ 5 000",
+    resumen: "Un vendedor ofrece en un foro una “database Banco de la Nación (bn.com.pe)” por US$ 5 000, con muestras censuradas. Es la segunda oferta sobre el banco en 16 meses (la de jun-2025 fue negada por la entidad). Sin confirmación.",
+    estado: "sinverificar", estado_txt: "Oferta en foro · sin verificar",
+    registros: null, registros_tipo: "afirmado", escala_txt: "No cuantificado",
+    datos: ["dni","nombre","financiero"],
+    vector: "Afirmación del vendedor",
+    fuentes: [["Alph4_Sec (X), oct-2026", "https://x.com/Alph4_Sec"]]
+  },
+  {
+    id: "escale-2026", fecha: "2026-10", anio: 2026, entidad: "MINEDU · ESCALE", sector: "Estado",
+    titulo: "25-oct-2026: padrón ESCALE de colegios, ~181 mil registros",
+    resumen: "El actor “Crime5” publicó un volcado XML del padrón de instituciones educativas: códigos modulares, dirección y coordenadas, UGEL/DRE, matrícula por grado y, lo delicado, nombre del director con teléfono y correo, RUC y promotor. Buena parte del padrón ya es dato abierto; lo que lo vuelve problema son los contactos de directores por colegio.",
+    estado: "sinverificar", estado_txt: "Publicado en foro · sin verificar",
+    registros: 181000, registros_tipo: "afirmado", escala_txt: "~181 mil registros (afirmado)",
+    datos: ["nombre","telefono","correo","direccion"],
+    vector: "Afirmación del atacante",
+    fuentes: [["Alph4_Sec (X), 25-oct-2026", "https://x.com/Alph4_Sec"]]
+  },
+  {
+    id: "movistar-2026", fecha: "2026-10", anio: 2026, entidad: "Movistar Perú (Telefónica)", sector: "Telecom",
+    titulo: "25-oct-2026: nueva base atribuida a Movistar, en venta",
+    resumen: "El actor “WSdatabase” ofrece una base que atribuye a Movistar Perú: tipo y número de documento, nombre completo, tipo de cliente, segmento de valor, celular, plan y estado del pedido. Volumen no especificado. Segunda vez en 16 meses que se ofrecen datos de Movistar.",
+    estado: "sinverificar", estado_txt: "Oferta en foro · sin verificar",
+    registros: null, registros_tipo: "afirmado", escala_txt: "No cuantificado",
+    datos: ["dni","nombre","telefono"],
+    vector: "Afirmación del vendedor",
+    fuentes: [["Alph4_Sec (X), 25-oct-2026", "https://x.com/Alph4_Sec"]]
+  },
+  {
+    id: "cayetano-2026", fecha: "2026-10", anio: 2026, entidad: "Hospital Nacional Cayetano Heredia (MINSA)", sector: "Salud",
+    titulo: "26-oct-2026: 2,5 millones de pacientes, 14,8 millones de registros",
+    resumen: "El actor “UNC6783” afirma haber vulnerado el hospital: DNI, nombre, nacimiento, dirección, celular, correo, número de historia clínica, triaje, motivo de consulta, códigos de diagnóstico, afiliación SIS, IDs de pacientes y de personal, estaciones de trabajo e IP. Si es cierto, es la filtración de datos de salud más grave registrada en el país.",
+    estado: "sinverificar", estado_txt: "Afirmado en foros · sin verificar",
+    registros: 2500000, registros_tipo: "afirmado", escala_txt: "~2,5 M personas · 14,8 M registros (afirmado)",
+    datos: ["dni","nombre","direccion","telefono","correo","nacimiento","salud"],
+    vector: "Afirmación del atacante",
+    fuentes: [["Alph4_Sec (X), 26-oct-2026", "https://x.com/Alph4_Sec"]]
+  },
+  {
+    id: "grifos-2026", fecha: "2026-10", anio: 2026, entidad: "Grifos Espinoza S.A.", sector: "Combustibles",
+    titulo: "26-oct-2026: ransomware SafePay con cuenta regresiva",
+    resumen: "El grupo SafePay afirma haber vulnerado a Grifos Espinoza y amenaza con publicar los datos en 2–3 días (contador activo desde el 26-oct 15:01). No detalla tipo ni cantidad. Una estación de servicio guarda DNI, placas y pagos de sus clientes.",
+    estado: "sinverificar", estado_txt: "Extorsión anunciada · sin verificar",
+    registros: null, registros_tipo: "afirmado", escala_txt: "No cuantificado",
+    datos: ["nombre","financiero"],
+    vector: "Ransomware + extorsión",
+    fuentes: [["Alph4_Sec (X), 26-oct-2026", "https://x.com/Alph4_Sec"]]
+  },
+  {
     id: "reniec-2026", fecha: "2026-10", anio: 2026, entidad: "RENIEC", sector: "Estado",
     titulo: "Octubre 2026: afirman tener datos de RENIEC",
     resumen: "El 18-oct-2026 un actor en foros afirmó tener registros de RENIEC. No hay confirmación independiente ni pronunciamiento verificable al cierre de esta página.",

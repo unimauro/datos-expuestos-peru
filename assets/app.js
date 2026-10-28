@@ -11,11 +11,11 @@ function hideTip(){ tip.style.display='none'; }
 
 // KPIs
 const kp = [
-  { n: '14', t: 'casos graves registrados, 2022 → oct-2026', f: '6 confirmados o reconocidos · 3 con alerta oficial · 3 sin verificar · 2 negados' },
+  { n: '20', t: 'casos graves registrados, 2022 → oct-2026', f: '5 confirmados o reconocidos · 3 con alerta oficial · 9 sin verificar · 3 negados' },
   { n: '15 M', t: 'ciudadanos consultados en masa desde RENIEC (abr-2025)', f: 'Reconocido por la jefa de RENIEC. Acceso vía convenio del Mininter.' },
   { n: '21 M', t: 'registros de Movistar ofrecidos en venta (jun-2025)', f: 'DNI, nombre, dirección, plan. Telefónica investiga.' },
-  { n: '4 de 14', t: 'casos salieron por un acceso legítimo mal controlado', f: 'PIDE 2022, RENIEC-Mininter 2025, DIRIN 2025, padrón 2025.' },
-  { n: '8', t: 'casos en los últimos 16 meses', f: 'Jun-2025 → oct-2026. Cuatro son afirmaciones de la última semana.' },
+  { n: '4 de 20', t: 'casos salieron por un acceso legítimo mal controlado', f: 'PIDE 2022, RENIEC-Mininter 2025, DIRIN 2025, padrón 2025.' },
+  { n: '15', t: 'casos en los últimos 16 meses', f: 'Jun-2025 → oct-2026. Diez son afirmaciones de los últimos diez días: hospital, colegios, telcos, banco, hosting, EsSalud, RENIEC y la votación de la UNI.' },
   { n: '0', t: 'veces que un DNI, una dirección o una huella se pudieron “resetear”', f: 'Por eso cada filtración vale para siempre. Ver el peor escenario.' }
 ];
 document.getElementById('kpis').innerHTML = kp.map(k=>`<div class="card stat"><div class="n">${k.n}</div><div class="t">${k.t}</div><div class="f">${k.f}</div></div>`).join('');
@@ -91,7 +91,7 @@ function renderFiltros(){
 }
 function renderLista(){
   const rows=I.filter(i=>(fEstado==='todos'||i.estado===fEstado)&&(fSector==='todos'||i.sector===fSector));
-  document.getElementById('lista').innerHTML = rows.length? rows.map(i=>`<div class="card inc">
+  document.getElementById('lista').innerHTML = rows.length? rows.map(i=>`<div class="card inc" id="${i.id}">
     <div class="when">${mes(i.fecha)}<small>${i.sector}</small></div>
     <div><h3>${i.titulo}</h3>
       <div><span class="tag ${i.estado}"><i>${E[i.estado].icon}</i>${i.estado_txt}</span> <span class="chip">${i.escala_txt}</span></div>
