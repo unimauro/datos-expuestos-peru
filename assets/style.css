@@ -99,3 +99,13 @@ footer a{color:var(--muted)}
 .btn.ghost{background:transparent;color:var(--guinda);border:1.5px solid var(--guinda)}
 .qr{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .qr img{width:120px;height:120px;border-radius:8px;background:#fff;padding:6px}
+
+/* Banner HOY: card de texto a la izquierda, captura a la derecha */
+.callout.hoy{display:grid;grid-template-columns:1fr;gap:16px;align-items:start}
+.hoy-card{background:rgba(0,0,0,.18);border-radius:12px;padding:16px 18px}
+.hoy-tag{display:inline-block;font-size:13px;letter-spacing:.08em;font-weight:700;background:var(--gold-2);color:#1A1A1D;padding:6px 10px;border-radius:8px;margin-bottom:10px}
+.hoy-card p{margin:0 0 10px;font-size:16px;line-height:1.45;font-weight:400}
+.hoy-card p.hoy-nota{font-size:14px;opacity:.85}
+.hoy-link{display:inline-block;color:#fff;font-weight:700;text-decoration:underline;font-size:15px}
+.callout.hoy img{width:100%;border-radius:10px;display:block}
+@media(min-width:760px){.callout.hoy{grid-template-columns:3fr 2fr;gap:20px}}
