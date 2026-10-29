@@ -115,4 +115,54 @@ document.getElementById('yape').innerHTML = window.YAPE.map(c=>`<div class="card
 
 // Contexto
 document.getElementById('contexto').innerHTML = window.CONTEXTO.map(c=>`<div class="card stat"><div class="n" style="font-size:clamp(26px,3.6vw,36px)">${c.n}</div><div class="t">${c.t}</div><div class="f"><a href="${c.u}" target="_blank" rel="noopener">${c.f}</a></div></div>`).join('');
+
+// ---------- Ransomware (ransomware.live + Alph4_Sec) ----------
+(function(){
+  const R=window.RANSOMWARE; if(!R) return;
+  const anios=Object.keys(R.por_anio).sort(), n26=R.por_anio['2026']||0, n24=R.por_anio['2024']||0, n23=R.por_anio['2023']||0;
+  const estado=(R.sectores.find(s=>s[0]==='Estado y defensa')||[0,0])[1], salud=(R.sectores.find(s=>s[0]==='Salud')||[0,0])[1];
+  const kp=[
+    { n: String(R.total), t: `organizaciones peruanas reclamadas por bandas de ransomware, 2021 → ${mes(R.ultimo.slice(0,7))}`, f: `${anios.map(a=>`${a}: ${R.por_anio[a]}`).join(' · ')}. Fuente: ransomware.live.` },
+    { n: String(n26), t: 'reclamos solo en 2026, hasta octubre', f: n26>n24+n23 ? `Más que 2023 y 2024 juntos (${n23+n24}). ${R.grupos[0][0]} es la banda más activa.` : `${R.grupos[0][0]} es la banda más activa.` },
+    { n: String(estado), t: 'entidades del Estado y defensa en las listas', f: `PNP, Ejército, Mindef, Derrama Magisterial, Fondo MIVIVIENDA, SUNAFIL, ANA, gob.pe… Y ${salud} de salud: hospitales, clínicas, laboratorios.` },
+  ];
+  document.getElementById('rw-kpis').innerHTML = kp.map(k=>`<div class="card stat"><div class="n">${k.n}</div><div class="t">${k.t}</div><div class="f">${k.f}</div></div>`).join('');
+
+  // Reclamos por año (una serie)
+  (function(){
+    const W=600, H=230, padL=36, padB=36, top=20, cw=(W-padL-16)/anios.length, bw=Math.min(70, cw*0.55);
+    const max=Math.max(...anios.map(a=>R.por_anio[a]),1), sy=v=>(H-padB-top)*v/max; let s='';
+    anios.forEach((a,i)=>{ const v=R.por_anio[a], x=padL+i*cw+(cw-bw)/2, h=sy(v);
+      s+=`<rect x="${x}" y="${H-padB-h}" width="${bw}" height="${Math.max(h,2)}" rx="3" fill="var(--guinda)" class="seg" data-y="${a}" data-n="${v}"/>`;
+      s+=`<text x="${x+bw/2}" y="${H-padB+18}" text-anchor="middle" class="lbl">${a}${a==='2026'?' *':''}</text>`;
+      s+=`<text x="${x+bw/2}" y="${H-padB-h-6}" text-anchor="middle" class="mut">${v}</text>`; });
+    s+=`<line x1="${padL}" y1="${H-padB}" x2="${W-8}" y2="${H-padB}" class="axis"/>`;
+    s+=`<text x="${W-8}" y="${H-4}" text-anchor="end" class="mut">* hasta el ${R.ultimo.slice(8,10)}-${mes(R.ultimo.slice(0,7))}</text>`;
+    const svg=document.getElementById('rw-years'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.innerHTML=s;
+    svg.querySelectorAll('.seg').forEach(r=>{ r.addEventListener('mousemove', e=>showTip(e, `<b>${r.dataset.y}</b>: ${r.dataset.n} reclamos`)); r.addEventListener('mouseleave', hideTip); });
+  })();
+
+  // Bandas (barras horizontales)
+  (function(){
+    const g=R.grupos.slice(0,8), W=600, rowH=26, padL=118, padR=36, top=8, H=top+g.length*rowH+8;
+    const max=Math.max(...g.map(x=>x[1]),1), sx=v=>(W-padL-padR)*v/max; let s='';
+    g.forEach(([name,v],i)=>{ const y=top+i*rowH, w=sx(v);
+      s+=`<text x="${padL-8}" y="${y+rowH/2+4}" text-anchor="end" class="lbl" style="font-size:12.5px">${name}</text>`;
+      s+=`<rect x="${padL}" y="${y+4}" width="${Math.max(w,2)}" height="${rowH-8}" rx="3" fill="var(--guinda)" class="seg" data-g="${name}" data-n="${v}"/>`;
+      s+=`<text x="${padL+w+6}" y="${y+rowH/2+4}" class="mut">${v}</text>`; });
+    s+=`<line x1="${padL}" y1="${top}" x2="${padL}" y2="${H-8}" class="axis"/>`;
+    const svg=document.getElementById('rw-groups'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.innerHTML=s;
+    svg.querySelectorAll('.seg').forEach(r=>{ r.addEventListener('mousemove', e=>showTip(e, `<b>${r.dataset.g}</b>: ${r.dataset.n} víctimas peruanas`)); r.addEventListener('mouseleave', hideTip); });
+  })();
+
+  // Tabla de casos con datos de ciudadanos
+  const C=(window.RW_CASOS||[]).slice().sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  document.getElementById('rw-tabla').innerHTML = '<thead><tr><th>Listado</th><th>Víctima</th><th>Banda</th><th>Sector</th><th>Qué hay detrás</th></tr></thead><tbody>'
+    + C.map(c=>`<tr><td class="rw-f">${mes(c.fecha.slice(0,7))}</td><td><b>${c.victima}</b></td><td class="rw-g">${c.grupo}</td><td class="rw-g">${c.sector}</td><td style="color:var(--ink-2)">${c.nota}</td></tr>`).join('') + '</tbody>';
+
+  document.getElementById('rw-cards').innerHTML = C.map(c=>`<div class="card alph4"><div class="d">${mes(c.fecha.slice(0,7))} · ${c.sector}</div><div class="t">${c.victima}</div><p><b>${c.grupo}</b> · ${c.nota}</p></div>`).join('');
+
+  // Alertas Alph4_Sec
+  document.getElementById('rw-alph4').innerHTML = (window.ALPH4||[]).map(a=>`<div class="card alph4"><div class="d">${mes(a.fecha)}</div><div class="t">${a.titulo}</div><p>${a.texto}</p><a href="${a.url}" target="_blank" rel="noopener">Ver el post en X →</a></div>`).join('');
+})();
 })();

@@ -9,3 +9,11 @@ Datos: `data/incidentes.js` (un objeto por caso, con estado, escala, tipos de da
 ## Demo "Bot bajo ataque" (`bot.html`)
 
 Agente con dos herramientas (`buscar_caso`, `transferir_yape` con aprobación humana obligatoria) y batería adversarial en `data/pruebas.js`. La clave de API se pega en la página y vive solo en la pestaña; el navegador llama directo a la API. Las pruebas con texto vacío quedan "pendientes": escribe tus propios textos de ataque ahí.
+
+## Sección ransomware
+
+Reclamos de bandas contra organizaciones peruanas tomados de ransomware.live (`data/ransomware-pe.json` crudo, `data/ransomware.js` agregados) más una lista curada a mano de casos con datos de ciudadanos y alertas de @Alph4_Sec (`data/ransomware-casos.js`). Para actualizar los agregados:
+
+```
+python3 -I scripts/ransomware_sync.py
+```

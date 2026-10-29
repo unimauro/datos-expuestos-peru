@@ -85,6 +85,20 @@
   <div class="card matrix"><table id="matriz"></table></div>
 </section>
 
+<section id="ransomware">
+  <h2>La otra cara: el secuestro de datos <small>Reclamos de bandas de ransomware contra organizaciones peruanas publicados en sus propios sitios de extorsión, según ransomware.live. Son afirmaciones de los atacantes, no confirmaciones de las víctimas; cuando no se paga, los datos suelen terminar publicados.</small></h2>
+  <div class="grid g3" id="rw-kpis"></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="ch">Reclamos por año <span>2026 hasta octubre</span></div><svg class="chart" id="rw-years" role="img" aria-label="Reclamos de ransomware contra Perú por año"></svg></div>
+    <div class="card"><div class="ch">Bandas con más víctimas peruanas <span>Top 8, 2021 → 2026</span></div><svg class="chart" id="rw-groups" role="img" aria-label="Bandas de ransomware con más víctimas en Perú"></svg></div>
+  </div>
+  <h3 class="sub">Los que tocan datos de ciudadanos <small>Estado, salud, educación y seguros. Del más reciente al más antiguo.</small></h3>
+  <div class="card matrix rw-desk"><table id="rw-tabla"></table></div>
+  <div class="grid rw-mob" id="rw-cards"></div>
+  <h3 class="sub">Alertas de @Alph4_Sec <small>Cuenta peruana de inteligencia de amenazas que documenta filtraciones y reclamos en foros. Cada tarjeta enlaza al post original.</small></h3>
+  <div class="grid g3" id="rw-alph4"></div>
+</section>
+
 <section>
   <h2>Y el dinero sale por Yape o Plin <small>Las billeteras no son la brecha: son el último paso de la cadena. Los datos filtrados escriben el guion; la transferencia lo cobra.</small></h2>
   <div class="grid g3" id="yape"></div>
@@ -102,13 +116,15 @@
 
 <section id="fuentes">
   <h2>Fuentes y método</h2>
-  <p class="note">Cada caso muestra sus fuentes periodísticas u oficiales. <b>Confirmado o reconocido</b>: la entidad admitió la exposición. <b>Alerta oficial / en investigación</b>: hubo alerta del CNSD o la empresa admitió investigar sin desmentir. <b>Afirmado, sin verificar</b>: solo existe la afirmación del atacante en foros. <b>Negado</b>: la entidad niega la brecha. Las cifras de registros son las publicadas por la prensa o el atacante; no se auditaron. Datos en <a href="data/incidentes.js">data/incidentes.js</a>; correcciones a <a href="mailto:carlos@cardenas.pe">carlos@cardenas.pe</a>.</p>
+  <p class="note">Cada caso muestra sus fuentes periodísticas u oficiales. <b>Confirmado o reconocido</b>: la entidad admitió la exposición. <b>Alerta oficial / en investigación</b>: hubo alerta del CNSD o la empresa admitió investigar sin desmentir. <b>Afirmado, sin verificar</b>: solo existe la afirmación del atacante en foros. <b>Negado</b>: la entidad niega la brecha. Las cifras de registros son las publicadas por la prensa o el atacante; no se auditaron. Datos en <a href="data/incidentes.js">data/incidentes.js</a>. <b>Ransomware</b>: reclamos listados en los sitios de extorsión de las bandas, recogidos por <a href="https://www.ransomware.live/map/PE">ransomware.live</a> (descarga en <a href="data/ransomware-pe.json">data/ransomware-pe.json</a>, regenerable con <code>scripts/ransomware_sync.py</code>; se excluyen cuatro entradas de empresas extranjeras mal etiquetadas) y alertas de la cuenta <a href="https://x.com/Alph4_Sec">@Alph4_Sec</a>. Un reclamo no prueba la brecha ni su alcance; correcciones a <a href="mailto:carlos@cardenas.pe">carlos@cardenas.pe</a>.</p>
 </section>
 </div>
 
 <footer><div class="wrap">Carlos Cárdenas Fernández · Ingeniero de Sistemas (UNI) · MBA · <a href="https://github.com/unimauro">github.com/unimauro</a> · Material de la charla «Ver ya no es creer», conferencia Ecosistema Generativo, CEE-UNI, 28-oct-2026. Sin fines comerciales; las marcas citadas pertenecen a sus titulares.</div></footer>
 <div class="tip" id="tip"></div>
 <script src="data/incidentes.js"></script>
+<script src="data/ransomware.js"></script>
+<script src="data/ransomware-casos.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

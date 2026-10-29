@@ -109,3 +109,17 @@ footer a{color:var(--muted)}
 .hoy-link{display:inline-block;color:#fff;font-weight:700;text-decoration:underline;font-size:15px}
 .callout.hoy img{width:100%;border-radius:10px;display:block}
 @media(min-width:760px){.callout.hoy{grid-template-columns:3fr 2fr;gap:20px}}
+
+/* Sección ransomware */
+.ch{font-weight:700;font-size:15px;margin-bottom:8px}
+.ch span{display:block;font-weight:400;font-size:13px;color:var(--muted)}
+h3.sub{font-size:19px;margin:26px 0 10px}
+h3.sub small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:2px}
+.matrix td.rw-g{white-space:nowrap;color:var(--ink-2)}
+.matrix td.rw-f{white-space:nowrap;color:var(--muted)}
+.alph4 .d{font-size:12.5px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.alph4 .t{font-weight:700;margin:4px 0 6px}
+.alph4 p{margin:0 0 8px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.alph4 a{font-size:13.5px}
+.rw-mob{display:none}
+@media(max-width:759px){.rw-desk{display:none}.rw-mob{display:grid}}
